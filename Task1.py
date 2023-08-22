@@ -77,17 +77,37 @@ print(d)
 
 # Reverse the characters present in the statement.
 word = 'hello'
-print(word[::-1])
+rev = word[::-1]
+print(rev)
 
 # Reverse the words present in the statement.
 sentence = "hello hai welcome to python programing"
-st = ''
-words = sentence.split()
-for word in words:
-    st += word[::-1] + ' '
-
+st = sentence[::-1]
 print(st)
+# words = sentence.split()
+# for word in words:
+#     st += word[::-1] + ' '
+#
+# print(st)
 
 # Form a new statement from the reversed words.
+
+new_sen = rev + " " + st
+print(new_sen)
+
 # Remove the duplicate characters from the latest statement.
+
+d = {}
+words = new_sen.split()
+for word in words:
+    for char in word:
+        if word.count(char)>1:
+            if char not in d:
+                d[char] = 1
+            else:
+                d[char] += 1
+print(d)
+
 # Print final latest String statement
+
+print(new_sen)
