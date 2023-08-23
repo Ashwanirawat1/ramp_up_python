@@ -84,6 +84,5 @@ for i in user_input:
 
 print(unique)
 
-
 # Print final latest String statement
 print(unique)

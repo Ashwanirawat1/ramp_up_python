@@ -42,5 +42,4 @@ def main():
         else:
             print("Invalid input. Please enter 'Yes' or 'No'.")
 
-
 main()
