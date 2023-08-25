@@ -10,8 +10,8 @@ class Producer(threading.Thread):
         self.queue = queue
 
     def run(self):
-        for i in range(1,5):
-            item = f"Item-{random.randint(1, 10)}"
+        for i in range(1, 5):
+            item = f"Item-{random.randint(1, 5)}"
             print(f"Producer-{self.id} produced {item}")
             self.queue.put(item)
             time.sleep(random.random())
@@ -34,23 +34,19 @@ class Consumer(threading.Thread):
 def main(num_producers, num_consumers):
     shared_queue = queue.Queue()
 
-    producers = [Producer(i, shared_queue) for i in range(num_producers)]
-    consumers = [Consumer(i, shared_queue) for i in range(num_consumers)]
+    threads = []
 
-    for producer in producers:
-        producer.start()
+    for i in range(num_producers):
+        threads.append(Producer(i, shared_queue))
 
-    for consumer in consumers:
-        consumer.start()
+    for i in range(num_consumers):
+        threads.append(Consumer(i, shared_queue))
 
-    for producer in producers:
-        producer.join()
+    for thread in threads:
+        thread.start()
 
-    for _ in range(num_consumers):
-        shared_queue.put(None)
-
-    for consumer in consumers:
-        consumer.join()
+    for thread in threads:
+        thread.join()
 
 if __name__ == "__main__":
     num_producers = int(input("Enter the number of producers: "))
