@@ -2,7 +2,6 @@ import threading
 import time
 import queue
 import random
-import sys
 
 class Producer(threading.Thread):
     def __init__(self, id, queue):
@@ -11,7 +10,7 @@ class Producer(threading.Thread):
         self.queue = queue
 
     def run(self):
-        for i in range(5):
+        for i in range(1,5):
             item = f"Item-{random.randint(1, 10)}"
             print(f"Producer-{self.id} produced {item}")
             self.queue.put(item)
