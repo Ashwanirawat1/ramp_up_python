@@ -43,6 +43,10 @@ with open(file_path, "r") as file:
                         wfo_count_previous += 1
                 elif all(not row[col_index + 1] for date in previous_dates):
                     not_filled_employees.append(row[0])
+                    for i in not_filled_employees:
+                        if not_filled_employees.count(i) <= 5:
+                            break
+
     else:
         print("Today's date not found in the CSV header.")
 
@@ -55,4 +59,4 @@ print(f"WFH: {wfh_count_previous}")
 print(f"WFO: {wfo_count_previous}")
 
 print("\nEmployees who haven't filled attendance for today and previous 5 days:")
-print(not_filled_employees)
+print(i)
